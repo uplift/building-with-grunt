@@ -23,13 +23,18 @@ module.exports = function( grunt ) {
                 }
             }
         },
+        // clean task
+        clean: [ 'build/docs', 'build/staging/' ],
         // copy task
         copy: {
             staging: {
                 files: [
                     {
+                        // files to copy across - in this case, all files
                         src       : [ './**' ],
+                        // destination directory for copied files
                         dest      : 'build/staging/',
+                        // filter files that aren't needed to be copied
                         filter  : function( src ) {
                             return !grunt.file.isMatch(
                                 [
@@ -47,5 +52,5 @@ module.exports = function( grunt ) {
         }
     });
 
-    grunt.registerTask( 'default', [ 'jshint', 'docco', 'copy:staging' ] );
+    grunt.registerTask( 'default', [ 'jshint', 'clean', 'docco', 'copy:staging' ] );
 }
