@@ -11,8 +11,19 @@ module.exports = function( grunt ) {
             srclint: {
                 src: [ 'scripts/**/*.js' ]
             }
+        },
+        // docco task
+        docco: {
+            // document all the things
+            all: {
+                // Path to scripts to doc
+                src: [ 'scripts/**/*.js' ],
+                options: {
+                    output: 'build/docs/'
+                }
+            }
         }
     });
 
-    grunt.registerTask( 'default', [ 'jshint' ] );
+    grunt.registerTask( 'default', [ 'jshint', 'docco' ] );
 }
