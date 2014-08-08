@@ -22,8 +22,30 @@ module.exports = function( grunt ) {
                     output: 'build/docs/'
                 }
             }
+        },
+        // copy task
+        copy: {
+            staging: {
+                files: [
+                    {
+                        src       : [ './**' ],
+                        dest      : 'build/staging/',
+                        filter  : function( src ) {
+                            return !grunt.file.isMatch(
+                                [
+                                    'node_modules',
+                                    'node_modules/**',
+                                    'build',
+                                    'build/**'
+                                ],
+                                src
+                            );
+                        }
+                    }
+                ]
+            }
         }
     });
 
-    grunt.registerTask( 'default', [ 'jshint', 'docco' ] );
+    grunt.registerTask( 'default', [ 'jshint', 'docco', 'copy:staging' ] );
 }
