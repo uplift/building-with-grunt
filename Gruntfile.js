@@ -55,8 +55,15 @@ module.exports = function( grunt ) {
                     }
                 ]
             }
+        },
+        // concat task
+        concat: {
+            dist: {
+                src: '<%= paths.staging %>/<%= paths.scripts %>',
+                dest: '<%= paths.staging %>/scripts/dist.js'
+            }
         }
     });
 
-    grunt.registerTask( 'default', [ 'jshint', 'clean', 'docco', 'copy:staging' ] );
+    grunt.registerTask( 'default', [ 'jshint', 'clean', 'docco', 'copy:staging', 'concat' ] );
 }
