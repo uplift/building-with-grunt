@@ -62,8 +62,15 @@ module.exports = function( grunt ) {
                 src: '<%= paths.staging %>/<%= paths.scripts %>',
                 dest: '<%= paths.staging %>/scripts/dist.js'
             }
+        },
+        // minify task
+        uglify: {
+            dist: {
+                src: '<%= paths.staging %>/scripts/dist.js',
+                dest: '<%= paths.staging %>/scripts/dist.js'
+            }
         }
     });
 
-    grunt.registerTask( 'default', [ 'jshint', 'clean', 'docco', 'copy:staging', 'concat' ] );
+    grunt.registerTask( 'default', [ 'jshint', 'clean', 'docco', 'copy:staging', 'concat', 'uglify' ] );
 }
