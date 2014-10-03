@@ -7,7 +7,8 @@ module.exports = function( grunt ) {
         paths: {
             scripts     : 'scripts/**/*.js',
             docs        : 'build/docs',
-            staging     : 'build/staging'
+            staging     : 'build/staging',
+            distScript  : 'scripts/dist.js'
         },
         ignores: {
             staging: [
@@ -60,14 +61,14 @@ module.exports = function( grunt ) {
         concat: {
             dist: {
                 src: '<%= paths.staging %>/<%= paths.scripts %>',
-                dest: '<%= paths.staging %>/scripts/dist.js'
+                dest: '<%= paths.staging %>/<%= paths.distScript %>'
             }
         },
         // minify task
         uglify: {
             dist: {
-                src: '<%= paths.staging %>/scripts/dist.js',
-                dest: '<%= paths.staging %>/scripts/dist.js'
+                src: '<%= paths.staging %>/<%= paths.distScript %>',
+                dest: '<%= paths.staging %>/<%= paths.distScript %>'
             }
         }
     });
